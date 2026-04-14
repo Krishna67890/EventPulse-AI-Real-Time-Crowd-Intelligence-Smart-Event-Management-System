@@ -341,7 +341,7 @@ const AboutPage = () => {
 
             <footer className="max-w-7xl mx-auto mt-24 pb-16 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-12 text-[10px] text-white/20 font-black uppercase tracking-[0.4em] relative z-10">
                 <div className="flex flex-col md:flex-row items-center gap-6">
-                    <span className="text-white/40">© 2024 KRISHNA PATIL RAJPUT</span>
+                    <span className="text-white/40">© 2026 KRISHNA PATIL RAJPUT</span>
                     <div className="hidden md:block w-1 h-1 rounded-full bg-white/10" />
                     <span className="text-neonBlue/60">MADE FOR VIRTUAL PROMPTWARS @ HACK2SKILLS</span>
                     <div className="hidden md:block w-1 h-1 rounded-full bg-white/10" />
