@@ -8,11 +8,11 @@ const FuturePrediction = ({ zone }) => {
 
   if (!zone || !zone.ai) return null;
 
-  const { current, trend, futureProjections, alertMessage } = zone.ai;
+  const { current = {}, trend = 'Stable', futureProjections = [], alertMessage = null } = zone.ai || {};
 
   const chartData = [
-    { minute: 0, count: zone.people },
-    ...futureProjections.map(p => ({ minute: p.minute, count: p.predictedCount }))
+    { minute: 0, count: zone.people || 0 },
+    ...(futureProjections || []).map(p => ({ minute: p.minute, count: p.predictedCount }))
   ];
 
   return (
