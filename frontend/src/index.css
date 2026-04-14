@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-blue: #00f0ff;
+  --electric-purple: #7a00ff;
+  --soft-pink: #ff00c8;
+  --bg-dark: #050505;
+  --emergency-red: #ff0000;
+}
+
+
+body {
+  background-color: var(--bg-dark);
+  color: white;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease;
+}
+
+body.emergency-mode {
+  background-color: #1a0000;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-blue);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+.glassmorphism {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.path-glow-anim {
+  filter: drop-shadow(0 0 10px rgba(0, 243, 255, 1));
+  stroke-dasharray: 20, 20;
+  animation: path-flow 10s linear infinite;
+}
+
+@keyframes path-flow {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+
+.flow-arrow-anim {
+  animation: flow-move 3s linear infinite;
+}
+
+@keyframes flow-move {
+  from { stroke-dashoffset: 50; }
+  to { stroke-dashoffset: 0; }
+}
+
+.dash-offset-anim {
+  animation: dash-move 20s linear infinite;
+}
+
+@keyframes dash-move {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.safe-path-anim {
+  filter: drop-shadow(0 0 15px rgba(34, 197, 94, 1));
+  stroke-dasharray: 10, 20;
+  animation: path-flow-green 5s linear infinite;
+}
+
+@keyframes path-flow-green {
+  from { stroke-dashoffset: 300; }
+  to { stroke-dashoffset: 0; }
+}
+
+.ghost-node-anim {
+  animation: ghost-pulse 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+@keyframes ghost-pulse {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+  100% { opacity: 0.3; transform: scale(1); }
+}
+
+/* Neural Forecast Horizon Slider Styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #00f3ff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00f3ff;
+  border: 2px solid white;
+}
+
+/* Emergency Overlay */
+.emergency-mode::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 10px solid rgba(255, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 9999;
+    animation: emergency-border 1s infinite alternate;
+}
+
+@keyframes emergency-border {
+    from { border-width: 0px; opacity: 0; }
+    to { border-width: 15px; opacity: 1; }
+}
+
+.glow-cursor {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.07) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+/* Streaming data effect */
+.live-pulse {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #00f0ff;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 10px #00f0ff;
+  animation: live-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes live-ping {
+  75%, 100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.emergency-mode .glass-card {
+  background: rgba(255, 0, 0, 0.05);
+  border-color: rgba(255, 0, 0, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #fff, #fff, var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.animated-gradient-border {
+  background: linear-gradient(#050505, #050505) padding-box,
+              linear-gradient(90deg, #00f0ff, #7a00ff, #ff00c8) border-box;
+  border: 1px solid transparent;
+}
+
+.emergency-mode .animated-gradient-border {
+    background: linear-gradient(#1a0000, #1a0000) padding-box,
+              linear-gradient(90deg, #ff0000, #ff5500, #ff0000) border-box;
+}
+
+/* Voice Wave Animation */
+.voice-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 20px;
+}
+
+.voice-bar {
+  width: 3px;
+  background: var(--neon-blue);
+  border-radius: 10px;
+  animation: wave 1s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { height: 5px; }
+  50% { height: 20px; }
+}
+
+/* Digital Twin Particle */
+.crowd-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    filter: blur(1px);
+    transition: all 1s linear;
+}
+
+.emergency-mode .crowd-particle {
+    background: var(--emergency-red);
+}
+
+/* Scanline Effect */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,0.02) 50%);
+  background-size: 100% 4px;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.emergency-mode .scanline {
+    background: linear-gradient(to bottom, rgba(255,0,0,0) 50%, rgba(255,0,0,0.03) 50%);
+    background-size: 100% 4px;
+}
