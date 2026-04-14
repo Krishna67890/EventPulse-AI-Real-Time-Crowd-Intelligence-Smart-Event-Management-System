@@ -112,7 +112,7 @@ const LiveDashboard = () => {
                 <span className="neon-text-blue">EVENT</span> INTEL <span className="text-white/20">CORE</span>
             </h2>
             <p className="header-el text-white/40 text-xs font-medium mt-2 max-w-md leading-relaxed uppercase tracking-wider">
-                Autonomous crowd orchestration & predictive safety protocol V.2.0
+                Autonomous crowd orchestration & predictive safety protocol V.2.6
             </p>
           </div>
 

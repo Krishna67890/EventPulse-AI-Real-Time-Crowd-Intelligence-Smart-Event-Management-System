@@ -83,7 +83,7 @@ const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neonBlue opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-neonBlue"></span>
             </span>
-            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-white/70">Autonomous Intelligence System v2.4</span>
+            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-white/70">Autonomous Intelligence System v2.6</span>
           </div>
 
           <h1 className="text-4xl md:text-8xl lg:text-[110px] font-black tracking-tighter leading-[0.9] mb-8">
