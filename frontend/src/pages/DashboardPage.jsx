@@ -306,7 +306,7 @@ const DashboardPage = () => {
                         </div>
                         <p className="text-xs font-black uppercase tracking-tight truncate">{zone.name}</p>
                         <div className="flex justify-between items-center mt-1">
-                            <span className="text-[8px] font-bold text-white/40">COMFORT: {zone.comfortScore || 85}%</span>
+                            <span className="text-[8px] font-bold text-white/40">COMFORT: {Number.isNaN(zone.comfortScore) ? 85 : zone.comfortScore}%</span>
                             <span className="text-[8px] font-bold text-neonBlue">WAIT: {zone.waitTime}m</span>
                         </div>
                         {zone.people > zone.capacity * 0.7 && (

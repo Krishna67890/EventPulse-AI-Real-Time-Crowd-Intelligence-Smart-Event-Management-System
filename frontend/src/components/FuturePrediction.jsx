@@ -26,7 +26,7 @@ const FuturePrediction = ({ zone }) => {
           <div className="flex items-center gap-4">
               <p className="text-[10px] text-white/30 uppercase tracking-widest">Neural Forecast for {zone.name}</p>
               <div className="px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-500 text-[8px] font-black uppercase tracking-tighter">
-                  Comfort: {zone.comfortScore || 82}%
+                  Comfort: {Number.isNaN(zone.comfortScore) ? 82 : zone.comfortScore}%
               </div>
           </div>
         </div>
