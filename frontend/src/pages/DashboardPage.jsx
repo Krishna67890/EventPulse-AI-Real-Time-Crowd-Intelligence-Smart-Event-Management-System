@@ -56,10 +56,11 @@ const DashboardPage = () => {
         const res = await fetch('http://localhost:5000/api/crowd/status');
         if (!res.ok) throw new Error('Backend Offline');
         const data = await res.json();
-        setCrowdData(data.zones);
-        setIsEmergencyMode(data.isEmergencyMode);
-        setSuggestions(generateSuggestions(data.zones));
-        if (!selectedZone) setSelectedZone(data.zones[0]);
+        const zones = data.zones || [];
+        setCrowdData(zones);
+        setIsEmergencyMode(!!data.isEmergencyMode);
+        setSuggestions(generateSuggestions(zones));
+        if (!selectedZone && zones.length > 0) setSelectedZone(zones[0]);
       } catch (error) {
         console.warn("Using Fallback Data:", error);
         setLowNetworkMode(true);
