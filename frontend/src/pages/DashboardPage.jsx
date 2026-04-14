@@ -9,7 +9,8 @@ import {
   LayoutDashboard,
   Bot,
   RefreshCw,
-  Cpu
+  Cpu,
+  User
 } from 'lucide-react';
 
 import MapView from '../components/MapView';
@@ -173,6 +174,10 @@ const DashboardPage = () => {
             <Link to="/stats" className="text-white/40 hover:text-neonBlue transition-colors cursor-pointer group flex flex-col items-center">
                 <TrendingUp size={22} />
                 <span className="text-[7px] font-black uppercase mt-1 tracking-widest lg:opacity-0 group-hover:opacity-100 transition-opacity">Stats</span>
+            </Link>
+            <Link to="/profile" className="text-white/40 hover:text-neonBlue transition-colors cursor-pointer group flex flex-col items-center">
+                <User size={22} />
+                <span className="text-[7px] font-black uppercase mt-1 tracking-widest lg:opacity-0 group-hover:opacity-100 transition-opacity">Profile</span>
             </Link>
             <Link to="/about" className="text-white/40 hover:text-neonBlue transition-colors cursor-pointer group flex flex-col items-center">
                 <Bot size={22} />

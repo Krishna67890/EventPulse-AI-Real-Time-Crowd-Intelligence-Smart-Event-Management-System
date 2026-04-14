@@ -125,3 +125,39 @@ export const getEvacuationPath = (currentZone, allZones) => {
         instruction: `EVACUATE TOWARDS ${safeExits[0]?.name.toUpperCase()} IMMEDIATELY.`
     };
 };
+
+/**
+ * Text-to-Speech (TTS) Voice Controller
+ * Handles System (Male) and Assistant (Female) voices
+ */
+export const speakIntroduction = (gender = 'female') => {
+    if (!window.speechSynthesis) return;
+
+    window.speechSynthesis.cancel(); // Stop any current speech
+
+    const introText = "Welcome to EventPulse AI. Our neural infrastructure utilizes multi-agent flow telemetry to provide real-time crowd intelligence and predictive security.";
+    const utterThis = new SpeechSynthesisUtterance(introText);
+
+    const voices = window.speechSynthesis.getVoices();
+
+    if (gender === 'male') {
+        // Look for Google US English or Microsoft David
+        utterThis.voice = voices.find(v => v.name.includes('David') || v.name.includes('Male')) || voices[0];
+        utterThis.pitch = 0.8; // Lower pitch for male feel
+        utterThis.rate = 0.9;
+    } else {
+        // Look for Google UK English Female or Microsoft Zira
+        utterThis.voice = voices.find(v => v.name.includes('Zira') || v.name.includes('Female')) || voices[1];
+        utterThis.pitch = 1.2;
+        utterThis.rate = 1.0;
+    }
+
+    window.speechSynthesis.speak(utterThis);
+};
+
+// Ensure voices are loaded
+if (typeof window !== 'undefined' && window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+    };
+}

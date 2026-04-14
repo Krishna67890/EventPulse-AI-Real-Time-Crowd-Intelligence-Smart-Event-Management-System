@@ -10,6 +10,12 @@ const AuthPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Simulate auth
+        localStorage.setItem('user_token', 'neural_session_' + Math.random().toString(36).substr(2, 9));
+        navigate('/');
+    };
+
+    const handleGuestLogin = () => {
+        localStorage.setItem('guest_id', 'guest_proto_' + Math.random().toString(36).substr(2, 9));
         navigate('/');
     };
 
@@ -97,7 +103,7 @@ const AuthPage = () => {
                         </div>
 
                         <button
-                            onClick={() => navigate('/')}
+                            onClick={handleGuestLogin}
                             className="w-full bg-white/5 border border-white/10 text-white/60 font-black py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-white/10 transition-all text-xs uppercase tracking-widest"
                         >
                             <Zap size={14} className="text-amber-400" />

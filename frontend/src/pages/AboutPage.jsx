@@ -71,6 +71,19 @@ const AboutPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020202]/80 to-[#020202]" />
             </div>
 
+            {/* Hackathon Badge */}
+            <div className="fixed top-24 left-0 z-[100] pointer-events-none">
+                <motion.div
+                    initial={{ x: -100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1, duration: 0.8 }}
+                    className="bg-neonBlue text-black px-6 py-2 rounded-r-2xl font-black text-[10px] uppercase tracking-[0.3em] shadow-[0_0_30px_rgba(0,243,255,0.4)] border-y border-r border-white/20 flex items-center gap-3 backdrop-blur-md"
+                >
+                    <div className="w-2 h-2 rounded-full bg-black animate-pulse" />
+                    Virtual Promptwars @ Hack2Skills
+                </motion.div>
+            </div>
+
             {/* Top Navigation */}
             <nav className="max-w-7xl mx-auto flex justify-between items-center mb-16 relative z-50">
                 <Link to="/" className="flex items-center gap-4 group">
@@ -327,9 +340,11 @@ const AboutPage = () => {
             </motion.div>
 
             <footer className="max-w-7xl mx-auto mt-24 pb-16 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-12 text-[10px] text-white/20 font-black uppercase tracking-[0.4em] relative z-10">
-                <div className="flex items-center gap-6">
+                <div className="flex flex-col md:flex-row items-center gap-6">
                     <span className="text-white/40">© 2024 KRISHNA PATIL RAJPUT</span>
-                    <div className="w-1 h-1 rounded-full bg-white/10" />
+                    <div className="hidden md:block w-1 h-1 rounded-full bg-white/10" />
+                    <span className="text-neonBlue/60">MADE FOR VIRTUAL PROMPTWARS @ HACK2SKILLS</span>
+                    <div className="hidden md:block w-1 h-1 rounded-full bg-white/10" />
                     <span className="hidden md:inline">Neural Infrastructure Framework v1.0.4</span>
                 </div>
                 <div className="flex gap-10">
