@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Binary, ChevronLeft, BookOpen, Shield, Code2, Cpu, Globe, Zap, Database, Activity, Map, Radio, ShieldAlert } from 'lucide-react';
+import { Binary, ChevronLeft, Map, Radio, ShieldAlert, Cpu } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const DocumentationPage = () => {
@@ -166,7 +166,5 @@ const StatBox = ({ label, value, sub }) => (
         <p className="text-[7px] font-black text-neonBlue uppercase tracking-[0.2em]">{sub}</p>
     </div>
 );
-
-export default DocumentationPage;
 
 export default DocumentationPage;
