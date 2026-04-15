@@ -1,17 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Binary, ChevronLeft, BookOpen, Shield, Code2, Cpu } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const DocumentationPage = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="min-h-screen bg-[#020202] text-white p-6 md:p-12 relative overflow-hidden">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-neonBlue/5 blur-[150px] rounded-full" />
 
             <nav className="max-w-4xl mx-auto mb-16 flex items-center justify-between">
-                <Link to="/about" className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-neonBlue transition-colors">
-                    <ChevronLeft size={14} /> Back to About
-                </Link>
+                <button
+                    onClick={() => navigate('/about')}
+                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-neonBlue transition-colors group"
+                >
+                    <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to About
+                </button>
                 <div className="flex items-center gap-3">
                     <Binary className="text-neonBlue" size={20} />
                     <span className="text-xl font-black tracking-tighter uppercase">Docs <span className="text-neonBlue">v1.0</span></span>

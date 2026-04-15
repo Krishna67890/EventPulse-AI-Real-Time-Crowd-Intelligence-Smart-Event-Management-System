@@ -15,6 +15,7 @@ function App() {
       <div className="min-h-screen selection:bg-neonBlue selection:text-black scroll-smooth">
         <Routes>
           <Route path="/" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/about" element={<AboutPage />} />

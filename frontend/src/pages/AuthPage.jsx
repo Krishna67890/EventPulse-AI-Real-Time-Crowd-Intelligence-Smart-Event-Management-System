@@ -32,7 +32,7 @@ const AuthPage = () => {
         };
         localStorage.setItem('user_profile', JSON.stringify(initialProfile));
 
-        navigate('/');
+        navigate('/dashboard');
     };
 
     const handleGuestLogin = () => {
@@ -49,7 +49,7 @@ const AuthPage = () => {
         };
         localStorage.setItem('user_profile', JSON.stringify(guestProfile));
 
-        navigate('/');
+        navigate('/dashboard');
     };
 
     return (
