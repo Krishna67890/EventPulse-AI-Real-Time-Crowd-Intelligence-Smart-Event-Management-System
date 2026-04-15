@@ -300,24 +300,27 @@ const AboutPage = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <SimulationCard
                             image="https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&q=80&w=800"
-                            title="Urban Flow"
-                            stats="84k Agents"
+                            title="Digital Twin Simulation"
+                            stats="Synchronized"
                             latency="0.4ms"
+                            description="Real-time 1:1 spatial mapping of urban infrastructure with 84k active neural agents."
                         />
                         <SimulationCard
                             image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
-                            title="Global Mesh"
-                            stats="12 Nodes"
+                            title="Multi-Agent Flow Dynamics"
+                            stats="High Fidelity"
                             latency="12ms"
+                            description="Predictive crowd movement analysis using non-linear fluid dynamics and agent-based modeling."
                         />
                         <SimulationCard
                             image="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800"
-                            title="Neural Logic"
+                            title="Neural Inference Logic"
                             stats="99.9% Acc"
                             latency="1.2ms"
+                            description="Deep learning cores processing 1.2TB of telemetry per second for zero-latency threat detection."
                         />
                     </div>
                 </motion.div>
@@ -555,29 +558,37 @@ const ModernTechTile = ({ Icon, name, color, level }) => (
     </div>
 );
 
-const SimulationCard = ({ image, title, stats, latency }) => (
+const SimulationCard = ({ image, title, stats, latency, description }) => (
     <motion.div
         whileHover={{ y: -10 }}
-        className="group relative h-80 rounded-[2.5rem] overflow-hidden border border-white/5 bg-black/40 shadow-xl"
+        className="group relative h-[450px] rounded-[2.5rem] overflow-hidden border border-white/5 bg-black/40 shadow-xl"
     >
         <img src={image} className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000 scale-110 group-hover:scale-100" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/60 to-transparent" />
 
-        <div className="absolute top-6 left-6 px-4 py-2 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-[8px] font-black text-neonBlue uppercase tracking-widest">
-            {latency} Latency
+        <div className="absolute top-6 left-6 flex gap-2">
+            <div className="px-4 py-2 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-[8px] font-black text-neonBlue uppercase tracking-widest">
+                {latency} Latency
+            </div>
+            <div className="px-4 py-2 bg-neonBlue/10 backdrop-blur-md border border-neonBlue/20 rounded-full text-[8px] font-black text-white uppercase tracking-widest">
+                {stats}
+            </div>
         </div>
 
         <div className="absolute bottom-10 left-10 right-10">
-            <h4 className="text-2xl font-black text-white mb-2 tracking-tight group-hover:text-neonBlue transition-colors">{title}</h4>
+            <h4 className="text-2xl font-black text-white mb-3 tracking-tight group-hover:text-neonBlue transition-colors uppercase leading-none">{title}</h4>
+            <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider leading-relaxed mb-6 group-hover:text-white/60 transition-colors">
+                {description}
+            </p>
             <div className="flex items-center gap-4">
-                <div className="h-1 flex-1 bg-white/10 rounded-full overflow-hidden">
+                <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden p-[1px]">
                     <motion.div
                         initial={{ width: 0 }}
-                        whileInView={{ width: '70%' }}
-                        className="h-full bg-neonBlue"
+                        whileInView={{ width: '85%' }}
+                        className="h-full bg-gradient-to-r from-neonBlue to-purple-600 rounded-full"
                     />
                 </div>
-                <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">{stats}</span>
+                <span className="text-[10px] font-black text-neonBlue font-mono">STABLE</span>
             </div>
         </div>
     </motion.div>
