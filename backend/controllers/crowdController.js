@@ -1,11 +1,11 @@
 const { predictFutureTrends } = require('../utils/predictionEngine');
 
 let crowdData = [
-  { id: 'gate_a', name: 'Gate A', people: 120, capacity: 500, servicePoints: 3, avgServiceTime: 4, lat: 51.505, lng: -0.09 },
-  { id: 'gate_b', name: 'Gate B', people: 45, capacity: 500, servicePoints: 3, avgServiceTime: 4, lat: 51.51, lng: -0.1 },
-  { id: 'food_court', name: 'Food Court', people: 350, capacity: 1000, servicePoints: 8, avgServiceTime: 10, lat: 51.51, lng: -0.08 },
-  { id: 'washroom_main', name: 'Main Washrooms', people: 80, capacity: 200, servicePoints: 12, avgServiceTime: 3, lat: 51.50, lng: -0.07 },
-  { id: 'main_stage', name: 'Main Stage', people: 1200, capacity: 2500, servicePoints: 1, avgServiceTime: 0, lat: 51.508, lng: -0.085 },
+  { id: 'intl_airport', name: 'Aero-Transit Hub (Airport)', people: 1200, capacity: 5000, servicePoints: 12, avgServiceTime: 15, lat: 51.505, lng: -0.09, type: 'airport' },
+  { id: 'central_station', name: 'Central Pulse Terminal (Train)', people: 850, capacity: 2000, servicePoints: 8, avgServiceTime: 5, lat: 51.51, lng: -0.1, type: 'train' },
+  { id: 'metro_bus_bay', name: 'Nexus Bus Interchange', people: 350, capacity: 1000, servicePoints: 15, avgServiceTime: 2, lat: 51.51, lng: -0.08, type: 'bus' },
+  { id: 'north_shuttle', name: 'North Orbital Shuttle', people: 120, capacity: 300, servicePoints: 4, avgServiceTime: 3, lat: 51.50, lng: -0.07, type: 'shuttle' },
+  { id: 'main_stage', name: 'Main Event Arena', people: 4200, capacity: 5000, servicePoints: 4, avgServiceTime: 0, lat: 51.508, lng: -0.085, type: 'arena' },
 ];
 
 let isEmergencyMode = false;

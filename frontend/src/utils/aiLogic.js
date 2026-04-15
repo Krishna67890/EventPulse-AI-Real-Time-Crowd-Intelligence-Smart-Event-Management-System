@@ -65,40 +65,54 @@ export const predictFutureState = (zoneId, currentPeople, capacity, timeframeMin
 
 export const generateSuggestions = (zones) => {
     const suggestions = [];
+    if (!zones || zones.length === 0) return suggestions;
+
     const sortedByDensity = [...zones].sort((a, b) => (a.people / a.capacity) - (b.people / b.capacity));
 
-    // Smart Navigation: Entry/Exit Suggestion
-    const bestGate = sortedByDensity.find(z => z.id.toLowerCase().includes('gate'));
-    if (bestGate) {
-        const wait = calculateWaitTime(bestGate.people, bestGate.servicePoints || 3, bestGate.avgServiceTime || 4);
+    // 1. Real-Time Detection: High Crowding
+    const bottleneck = [...zones].sort((a, b) => (b.people / b.capacity) - (a.people / a.capacity))[0];
+    const density = bottleneck.people / bottleneck.capacity;
+
+    if (density > 0.85) {
+        suggestions.push({
+            type: 'AVOID',
+            title: `CRITICAL DETECTION: ${bottleneck.name}`,
+            desc: `Real-time sensors detect ${Math.round(density * 100)}% capacity saturation. Neural diversion protocol engaged.`,
+            impact: 'Urgent'
+        });
+    }
+
+    // 2. Real-Time Detection: Airport/Train Connectivity
+    const transit = zones.find(z => z.type === 'AIRPORT' || z.type === 'TRAIN_STATION');
+    if (transit) {
+        const status = (transit.people / transit.capacity) < 0.4 ? "Optimal" : "Heavy";
         suggestions.push({
             type: 'NAV',
-            title: `Smart Routing: ${bestGate.name}`,
-            desc: `Optimized pathway detected. Current wait: ${wait} min. Saving ~12 mins vs Main Gate.`,
-            impact: 'Efficient'
+            title: `Transit Link: ${transit.name}`,
+            desc: `Current throughput is ${status}. Automated shuttle frequency adjusted to maintain flow.`,
+            impact: 'Flow Sync'
         });
     }
 
-    // Proactive Safety Alert
-    const bottleneck = [...zones].sort((a, b) => (b.people / b.capacity) - (a.people / a.capacity))[0];
-    if (bottleneck && (bottleneck.people / bottleneck.capacity) > 0.8) {
-        suggestions.push({
-            type: 'EMERGENCY',
-            title: `Congestion Alert: ${bottleneck.name}`,
-            desc: `Density exceeds 80%. Automated diversion protocol active. Follow LED floor markers.`,
-            impact: 'Safety Critical'
-        });
-    }
-
-    // Recommendation Engine: Facility Timing
-    const foodCourt = zones.find(z => z.id.toLowerCase().includes('food') || z.id.toLowerCase().includes('washroom'));
-    if (foodCourt) {
-        const isBusy = (foodCourt.people / foodCourt.capacity) > 0.6;
+    // 3. Real-Time Detection: Safety & Security
+    const secureZone = zones.find(z => z.type === 'SECURITY' || z.type === 'MEDICAL');
+    if (secureZone && secureZone.people > (secureZone.capacity * 0.7)) {
         suggestions.push({
             type: 'REC',
-            title: isBusy ? 'Facility Peak Warning' : 'Facility Access Clear',
-            desc: isBusy ? `High demand at ${foodCourt.name}. Visit in 15 mins for 50% less wait.` : `Perfect time to visit ${foodCourt.name}. Zero queue detected.`,
-            impact: 'Personalized'
+            title: `Safety Node Alert: ${secureZone.name}`,
+            desc: `Sensor fusion indicates high responder demand. Auxiliary medical units mobilized to Sector ${secureZone.id}.`,
+            impact: 'Safety'
+        });
+    }
+
+    // 4. Recommendation Engine: Personalized Pathing
+    const bestPath = sortedByDensity[0];
+    if (bestPath) {
+        suggestions.push({
+            type: 'REC',
+            title: `Optimal Zone: ${bestPath.name}`,
+            desc: `Detected lowest latency and density. Best location for rest or regrouping. Wait time: ${calculateWaitTime(bestPath.people, bestPath.servicePoints, bestPath.avgServiceTime)}m.`,
+            impact: 'Personal'
         });
     }
 

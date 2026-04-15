@@ -103,7 +103,7 @@ const AboutPage = () => {
 
             {/* Top Navigation */}
             <nav className="max-w-7xl mx-auto flex justify-between items-center mb-16 relative z-50">
-                <Link to="/" className="flex items-center gap-4 group">
+                <Link to="/dashboard" className="flex items-center gap-4 group">
                     <div className="relative">
                         <div className="absolute inset-0 bg-neonBlue/20 blur-md rounded-xl group-hover:blur-lg transition-all" />
                         <div className="w-12 h-12 bg-black border border-neonBlue/30 rounded-xl flex items-center justify-center relative z-10 group-hover:border-neonBlue transition-all duration-500">
@@ -409,14 +409,14 @@ const AboutPage = () => {
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <span className="text-white/40">© 2026 KRISHNA PATIL RAJPUT</span>
                     <div className="hidden md:block w-1 h-1 rounded-full bg-white/10" />
-                    <span className="text-neonBlue/60">MADE FOR VIRTUAL PROMPTWARS @ HACK2SKILLS</span>
+                    <span className="text-neonBlue/60">Neural Infrastructure Framework v1.0.4</span>
                     <div className="hidden md:block w-1 h-1 rounded-full bg-white/10" />
-                    <span className="hidden md:inline">Neural Infrastructure Framework v1.0.4</span>
+                    <span className="hidden md:inline">VIRTUAL PROMPTWARS @ HACK2SKILLS</span>
                 </div>
                 <div className="flex gap-10">
+                    <a href="https://github.com/Krishna67890/EventPulseAI/blob/main/AUDIT_REPORT.md" target="_blank" rel="noopener noreferrer" className="hover:text-neonBlue cursor-pointer transition-colors">Audit Report</a>
+                    <a href="https://github.com/Krishna67890/EventPulseAI/blob/main/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer" className="hover:text-neonBlue cursor-pointer transition-colors">Privacy Policy</a>
                     <Link to="/docs" className="hover:text-neonBlue cursor-pointer transition-colors">Documentation</Link>
-                    <span className="hover:text-neonBlue cursor-pointer transition-colors">Privacy Link</span>
-                    <span className="hover:text-neonBlue cursor-pointer transition-colors">Audit Report</span>
                 </div>
             </footer>
         </div>

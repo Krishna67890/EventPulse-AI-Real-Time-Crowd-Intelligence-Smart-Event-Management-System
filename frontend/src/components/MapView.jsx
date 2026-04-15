@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Circle, Popup, Polyline, useMap, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getAIStatus } from '../utils/aiLogic';
-import { Compass, Navigation, Map as MapIcon, Layers, Plus, Minus, Target, Activity, Store, Utensils, Droplets, LogOut, HeartPulse, Wifi, BatteryCharging, ShieldCheck, Globe } from 'lucide-react';
+import { Compass, Navigation, Map as MapIcon, Layers, Plus, Minus, Target, Activity, Store, Utensils, Droplets, LogOut, HeartPulse, Wifi, BatteryCharging, ShieldCheck, Globe, Plane, Train, Bus, Info } from 'lucide-react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import L from 'leaflet';
 import gsap from 'gsap';
@@ -10,36 +10,42 @@ import gsap from 'gsap';
 // Specialized Icons for different zone types
 const getZoneIcon = (id, color, type) => {
     let Icon = Activity;
-    if (type === 'EXIT' || id.includes('gate') || id.includes('entry')) Icon = LogOut;
-    if (type === 'RESTAURANT' || id.includes('food') || id.includes('merch')) Icon = Utensils;
-    if (type === 'WASHROOM' || id.includes('washroom')) Icon = Droplets;
-    if (type === 'MEDICAL' || id.includes('medical')) Icon = HeartPulse;
-    if (type === 'WIFI' || id.includes('wifi')) Icon = Wifi;
-    if (type === 'POWER' || id.includes('power') || id.includes('charging')) Icon = BatteryCharging;
-    if (type === 'SECURITY' || id.includes('security')) Icon = ShieldCheck;
-    if (type === 'VIP' || id.includes('vip')) Icon = Store;
-    if (type === 'AIRPORT') Icon = Globe;
-    if (type === 'TRAIN_STATION') Icon = Compass;
 
-    // Override colors as requested
+    // Check by type or explicit ID match
+    const lowerId = id?.toLowerCase() || "";
+    const lowerType = type?.toLowerCase() || "";
+
+    if (lowerType === 'airport' || lowerId.includes('airport') || lowerId.includes('aero')) Icon = Plane;
+    else if (lowerType === 'train' || lowerId.includes('train') || lowerId.includes('terminal')) Icon = Train;
+    else if (lowerType === 'bus' || lowerId.includes('bus')) Icon = Bus;
+    else if (lowerType === 'exit' || lowerId.includes('gate') || lowerId.includes('entry')) Icon = LogOut;
+    else if (lowerType === 'restaurant' || lowerId.includes('food') || lowerId.includes('merch')) Icon = Utensils;
+    else if (lowerType === 'washroom' || lowerId.includes('washroom')) Icon = Droplets;
+    else if (lowerType === 'medical' || lowerId.includes('medical')) Icon = HeartPulse;
+    else if (lowerType === 'wifi' || lowerId.includes('wifi')) Icon = Wifi;
+    else if (lowerType === 'power' || lowerId.includes('power') || lowerId.includes('charging')) Icon = BatteryCharging;
+    else if (lowerType === 'security' || lowerId.includes('security')) Icon = ShieldCheck;
+    else if (lowerType === 'vip' || lowerId.includes('vip')) Icon = Store;
+
+    // Override colors as requested by the user
     let finalColor = color;
-    if (type === 'CROWD') finalColor = '#ff0000'; // Red for Crowd
-    if (type === 'RESTAURANT') finalColor = '#0000ff'; // Blue for Restaurants
-    if (type === 'AIRPORT') finalColor = '#00ff00'; // Green for Airport
-    if (type === 'TRAIN_STATION') finalColor = '#ffff00'; // Yellow for Train Stations
+    if (lowerType === 'crowd' || lowerId.includes('arena')) finalColor = '#ff0000'; // Red for Crowd/Arena
+    if (lowerType === 'restaurant' || lowerId.includes('food')) finalColor = '#0000ff'; // Blue for Restaurants
+    if (lowerType === 'airport' || lowerId.includes('aero')) finalColor = '#00ff00'; // Green for Airport
+    if (lowerType === 'train' || lowerId.includes('terminal')) finalColor = '#ffff00'; // Yellow for Train Stations
 
     return L.divIcon({
         html: renderToStaticMarkup(
             <div className="relative flex items-center justify-center">
                 <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ backgroundColor: finalColor }} />
-                <div className="p-2 rounded-lg border border-white/20 shadow-lg backdrop-blur-md" style={{ backgroundColor: `${finalColor}33`, color: finalColor }}>
-                    <Icon size={14} strokeWidth={3} />
+                <div className="p-2 rounded-lg border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.1)] backdrop-blur-md transition-transform hover:scale-125" style={{ backgroundColor: `${finalColor}44`, color: finalColor }}>
+                    <Icon size={16} strokeWidth={2.5} />
                 </div>
             </div>
         ),
         className: 'custom-div-icon',
-        iconSize: [30, 30],
-        iconAnchor: [15, 15]
+        iconSize: [36, 36],
+        iconAnchor: [18, 18]
     });
 };
 
