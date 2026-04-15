@@ -52,9 +52,18 @@ const VoiceAssistant = () => {
         res += "Recommended route updated on your live map. Use the North corridor to save 12 minutes.";
     } else if (cmd.includes('gate')) {
         res += "Gate A is busy. Use Gate D for immediate entry (2 min wait).";
+    } else if (cmd.includes('feature') || cmd.includes('what can you do') || cmd.includes('help')) {
+        res += "I can monitor real-time crowd density, predict future congestion, provide smart navigation to avoid queues, and trigger emergency protocols. You can also view the Digital Twin simulation for advanced urban planning.";
+    } else if (cmd.includes('prediction') || cmd.includes('future')) {
+        res += "Our AI uses Kalman filters to predict crowd flow 10 to 30 minutes in advance. Check the Prediction panel for details.";
+    } else if (cmd.includes('emergency') || cmd.includes('safety')) {
+        res += "In case of emergency, the Guardian Protocol activates, providing automated evacuation paths to the nearest safe exit.";
     } else {
-        res += "Query synthesized. Please ask about crowd levels, routes, or facilities.";
+        res += "Query synthesized. You can ask about features, crowd levels, routes, or safety protocols.";
     }
+
+    const speakRes = new SpeechSynthesisUtterance(res);
+    window.speechSynthesis.speak(speakRes);
 
     setTimeout(() => {
         setResponse(res);

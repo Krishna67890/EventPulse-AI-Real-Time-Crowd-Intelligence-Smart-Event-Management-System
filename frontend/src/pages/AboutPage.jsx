@@ -22,6 +22,23 @@ const AboutPage = () => {
         "> Run 'neural-recovery --force' if visibility drops."
     ]);
 
+    const handleShare = () => {
+        if (navigator.share) {
+            navigator.share({
+                title: 'EventPulse AI',
+                text: 'Check out EventPulse AI - Neural Infrastructure for Smart Cities',
+                url: window.location.href,
+            }).catch(console.error);
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-10 left-1/2 -translate-x-1/2 z-[5000] px-6 py-3 bg-neonBlue text-black font-black rounded-xl text-[10px] uppercase tracking-widest';
+            toast.innerText = 'LINK COPIED TO NEURAL CLIPBOARD';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+    };
+
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: containerRef });
     const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -95,7 +112,7 @@ const AboutPage = () => {
                     </div>
                     <div className="flex flex-col">
                         <span className="text-2xl font-black tracking-tighter leading-none">EVENTPULSE <span className="text-neonBlue">AI</span></span>
-                        <span className="text-[8px] font-black uppercase tracking-[0.4em] text-white/30">Neural Infrastructure</span>
+                        <span className="text-[8px] font-black uppercase tracking-[0.4em] text-white/30">VIRTUAL Promptwars @hack2skills</span>
                     </div>
                 </Link>
                 <div className="flex items-center gap-6">
@@ -153,7 +170,10 @@ const AboutPage = () => {
                                     <SocialLink icon={<Github size={20} />} href="https://github.com/Krishna67890" />
                                     <SocialLink icon={<Linkedin size={20} />} href="https://www.linkedin.com/in/krishna-patil-rajput-b66b03340" />
                                     <SocialLink icon={<Mail size={20} />} href="mailto:dhanadai.krishna@gmail.com" />
-                                    <button className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all text-white/40 hover:text-white">
+                                    <button
+                                        onClick={handleShare}
+                                        className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-neonBlue hover:text-black transition-all text-white/40 hover:text-white"
+                                    >
                                         <Share2 size={18} />
                                     </button>
                                 </div>
@@ -245,12 +265,58 @@ const AboutPage = () => {
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
-                        <ModernTechTile icon="React" color="text-[#61DAFB]" level="EXPERT" />
-                        <ModernTechTile icon="Three.js" color="text-white" level="ADVANCED" />
-                        <ModernTechTile icon="Node.js" color="text-[#339933]" level="EXPERT" />
-                        <ModernTechTile icon="T-Flow" color="text-[#FF6F00]" level="NEURAL" />
-                        <ModernTechTile icon="Docker" color="text-[#2496ED]" level="SCALABLE" />
-                        <ModernTechTile icon="Postgres" color="text-[#4169E1]" level="VECTOR" />
+                        <ModernTechTile Icon={Layers} name="React" color="text-[#61DAFB]" level="FRONTEND" />
+                        <ModernTechTile Icon={Box} name="Tailwind" color="text-[#38BDF8]" level="STYLING" />
+                        <ModernTechTile Icon={Zap} name="Framer" color="text-[#FF0055]" level="ANIMATION" />
+                        <ModernTechTile Icon={Globe} name="Leaflet" color="text-[#199900]" level="GEOSPATIAL" />
+                        <ModernTechTile Icon={Activity} name="Lucide" color="text-[#F59E0B]" level="VECTORS" />
+                        <ModernTechTile Icon={Rocket} name="Vercel" color="text-white" level="DEPLOY" />
+                    </div>
+                </motion.div>
+
+                {/* DIGITAL TWIN: Simulation Visuals */}
+                <motion.div
+                    variants={itemVariants}
+                    className="lg:col-span-12 glassmorphism border border-white/5 rounded-[3rem] p-10 md:p-12 overflow-hidden relative shadow-2xl"
+                >
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+                        <div>
+                            <h3 className="text-[10px] font-black text-neonBlue uppercase tracking-[0.3em] mb-2">Digital Twin Simulation</h3>
+                            <h2 className="text-4xl font-black text-white tracking-tighter">NEURAL CITY <span className="text-white/20">VISUALIZER</span></h2>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-4">
+                                <div className="flex -space-x-3">
+                                    {[1,2,3].map(i => (
+                                        <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-zinc-800 flex items-center justify-center text-[10px] font-bold">
+                                            {i === 1 ? 'AI' : i === 2 ? 'IO' : 'RT'}
+                                        </div>
+                                    ))}
+                                </div>
+                                <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Active Simulators</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <SimulationCard
+                            image="https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&q=80&w=800"
+                            title="Urban Flow"
+                            stats="84k Agents"
+                            latency="0.4ms"
+                        />
+                        <SimulationCard
+                            image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
+                            title="Global Mesh"
+                            stats="12 Nodes"
+                            latency="12ms"
+                        />
+                        <SimulationCard
+                            image="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800"
+                            title="Neural Logic"
+                            stats="99.9% Acc"
+                            latency="1.2ms"
+                        />
                     </div>
                 </motion.div>
 
@@ -348,7 +414,7 @@ const AboutPage = () => {
                     <span className="hidden md:inline">Neural Infrastructure Framework v1.0.4</span>
                 </div>
                 <div className="flex gap-10">
-                    <span className="hover:text-neonBlue cursor-pointer transition-colors">Documentation</span>
+                    <Link to="/docs" className="hover:text-neonBlue cursor-pointer transition-colors">Documentation</Link>
                     <span className="hover:text-neonBlue cursor-pointer transition-colors">Privacy Link</span>
                     <span className="hover:text-neonBlue cursor-pointer transition-colors">Audit Report</span>
                 </div>
@@ -408,14 +474,43 @@ const InfraStep = ({ icon, title, subtitle, color, status }) => (
     </motion.div>
 );
 
-const ModernTechTile = ({ icon, color, level }) => (
+const ModernTechTile = ({ Icon, name, color, level }) => (
     <div className="relative group">
         <div className="flex flex-col items-center justify-center aspect-square rounded-3xl bg-white/[0.01] border border-white/5 group-hover:border-neonBlue/50 group-hover:bg-white/[0.03] transition-all duration-700 cursor-default overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-neonBlue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <span className={`text-[10px] font-black uppercase tracking-tight ${color} relative z-10 mb-1`}>{icon}</span>
+            <Icon size={24} className={`${color} relative z-10 mb-2 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500`} />
+            <span className={`text-[9px] font-black uppercase tracking-tight text-white/80 relative z-10 mb-0.5`}>{name}</span>
             <span className="text-[6px] font-black text-white/10 group-hover:text-white/30 transition-colors uppercase tracking-widest relative z-10">{level}</span>
         </div>
     </div>
+);
+
+const SimulationCard = ({ image, title, stats, latency }) => (
+    <motion.div
+        whileHover={{ y: -10 }}
+        className="group relative h-80 rounded-[2.5rem] overflow-hidden border border-white/5 bg-black/40 shadow-xl"
+    >
+        <img src={image} className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000 scale-110 group-hover:scale-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+        <div className="absolute top-6 left-6 px-4 py-2 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-[8px] font-black text-neonBlue uppercase tracking-widest">
+            {latency} Latency
+        </div>
+
+        <div className="absolute bottom-10 left-10 right-10">
+            <h4 className="text-2xl font-black text-white mb-2 tracking-tight group-hover:text-neonBlue transition-colors">{title}</h4>
+            <div className="flex items-center gap-4">
+                <div className="h-1 flex-1 bg-white/10 rounded-full overflow-hidden">
+                    <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: '70%' }}
+                        className="h-full bg-neonBlue"
+                    />
+                </div>
+                <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">{stats}</span>
+            </div>
+        </div>
+    </motion.div>
 );
 
 export default AboutPage;

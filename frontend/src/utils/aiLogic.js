@@ -135,24 +135,32 @@ export const speakIntroduction = (gender = 'female') => {
 
     window.speechSynthesis.cancel(); // Stop any current speech
 
-    const introText = "Welcome to EventPulse AI. Our neural infrastructure utilizes multi-agent flow telemetry to provide real-time crowd intelligence and predictive security.";
+    const introText = "Welcome to EventPulse AI, the Neural Infrastructure for Smart Cities, specifically architected for Virtual Promptwars by Hack2Skills. This system utilizes multi-agent flow telemetry and predictive neural networks to monitor crowd density in real-time. We are currently tracking critical zones like Airports, Train Stations, and high-capacity event sectors to ensure public safety and optimized urban flow. I am your neural assistant, here to guide you through the telemetry data. You can explore our live map, check future predictions for each zone, and monitor safety alerts. Click the microphone icon to interact with our voice assistant for instant queue times and navigation guidance.";
     const utterThis = new SpeechSynthesisUtterance(introText);
 
     const voices = window.speechSynthesis.getVoices();
 
     if (gender === 'male') {
-        // Look for Google US English or Microsoft David
         utterThis.voice = voices.find(v => v.name.includes('David') || v.name.includes('Male')) || voices[0];
-        utterThis.pitch = 0.8; // Lower pitch for male feel
-        utterThis.rate = 0.9;
+        utterThis.pitch = 0.8;
+        utterThis.rate = 0.95;
     } else {
-        // Look for Google UK English Female or Microsoft Zira
         utterThis.voice = voices.find(v => v.name.includes('Zira') || v.name.includes('Female')) || voices[1];
-        utterThis.pitch = 1.2;
+        utterThis.pitch = 1.05;
         utterThis.rate = 1.0;
     }
 
     window.speechSynthesis.speak(utterThis);
+};
+
+export const triggerEmergencyAlert = (zoneName) => {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const alertText = `CRITICAL ALERT: High density detected at ${zoneName}. Automated evacuation protocols are now active. Please redirect to the nearest green-lit exit immediately. Repeat, critical congestion at ${zoneName}.`;
+    const alert = new SpeechSynthesisUtterance(alertText);
+    alert.rate = 1.1;
+    alert.pitch = 0.8;
+    window.speechSynthesis.speak(alert);
 };
 
 // Ensure voices are loaded

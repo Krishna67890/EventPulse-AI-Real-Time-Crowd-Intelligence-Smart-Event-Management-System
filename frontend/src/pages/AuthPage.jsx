@@ -5,17 +5,50 @@ import { Shield, Mail, Lock, User, ArrowRight, Zap } from 'lucide-react';
 
 const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(true);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Simulate auth
         localStorage.setItem('user_token', 'neural_session_' + Math.random().toString(36).substr(2, 9));
+
+        // Save user name if provided during signup or use default for login
+        const userName = formData.name || (isLogin ? 'VERIFIED OPERATOR' : 'NEW OPERATOR');
+        localStorage.setItem('user_name', userName);
+        localStorage.removeItem('guest_id'); // Clear guest status on login
+
+        // Initialize profile
+        const initialProfile = {
+            name: userName,
+            photo: '',
+            description: 'Lead Neural Architect for Sector-7 crowd intelligence operations.',
+            address: '101 Cyber Plaza, Neo-London',
+            state: 'Greater London',
+        };
+        localStorage.setItem('user_profile', JSON.stringify(initialProfile));
+
         navigate('/');
     };
 
     const handleGuestLogin = () => {
         localStorage.setItem('guest_id', 'guest_proto_' + Math.random().toString(36).substr(2, 9));
+        localStorage.removeItem('user_token');
+        localStorage.removeItem('user_name');
+
+        const guestProfile = {
+            name: 'GUEST_OPERATOR',
+            photo: '',
+            description: 'Guest access active. Limited neural telemetry available.',
+            address: 'REDACTED',
+            state: 'California',
+        };
+        localStorage.setItem('user_profile', JSON.stringify(guestProfile));
+
         navigate('/');
     };
 
@@ -52,6 +85,8 @@ const AuthPage = () => {
                                 <input
                                     type="text"
                                     placeholder="OPERATOR NAME"
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({...formData, name: e.target.value})}
                                     className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-neonBlue/50 transition-all uppercase font-bold tracking-wider"
                                 />
                             </div>

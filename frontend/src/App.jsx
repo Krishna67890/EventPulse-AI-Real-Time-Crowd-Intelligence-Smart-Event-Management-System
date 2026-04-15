@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import LiveDashboard from './pages/LiveDashboard';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
+import DocumentationPage from './pages/DocumentationPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/docs" element={<DocumentationPage />} />
           <Route path="/stats" element={<ProtectedRoute><LiveDashboard /></ProtectedRoute>} />
           <Route path="/admin" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>} />
         </Routes>

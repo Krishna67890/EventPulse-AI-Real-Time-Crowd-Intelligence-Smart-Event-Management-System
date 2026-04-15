@@ -10,7 +10,7 @@ const ProfilePage = () => {
     const isGuest = !!localStorage.getItem('guest_id');
 
     const [profile, setProfile] = useState({
-        name: isGuest ? 'GUEST_OPERATOR' : 'OPERATOR_X',
+        name: isGuest ? 'GUEST_OPERATOR' : (localStorage.getItem('user_name') || 'VERIFIED OPERATOR'),
         photo: '',
         description: isGuest ? 'Guest access active. Limited neural telemetry available.' : 'Lead Neural Architect for Sector-7 crowd intelligence operations.',
         address: isGuest ? 'REDACTED' : '101 Cyber Plaza, Neo-London',

@@ -2,28 +2,37 @@ import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Circle, Popup, Polyline, useMap, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getAIStatus } from '../utils/aiLogic';
-import { Compass, Navigation, Map as MapIcon, Layers, Plus, Minus, Target, Activity, Store, Utensils, Droplets, LogOut, HeartPulse, Wifi, BatteryCharging, ShieldCheck } from 'lucide-react';
+import { Compass, Navigation, Map as MapIcon, Layers, Plus, Minus, Target, Activity, Store, Utensils, Droplets, LogOut, HeartPulse, Wifi, BatteryCharging, ShieldCheck, Globe } from 'lucide-react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import L from 'leaflet';
 import gsap from 'gsap';
 
 // Specialized Icons for different zone types
-const getZoneIcon = (id, color) => {
+const getZoneIcon = (id, color, type) => {
     let Icon = Activity;
-    if (id.includes('gate') || id.includes('entry')) Icon = LogOut;
-    if (id.includes('food') || id.includes('merch')) Icon = Utensils;
-    if (id.includes('washroom')) Icon = Droplets;
-    if (id.includes('medical')) Icon = HeartPulse;
-    if (id.includes('wifi')) Icon = Wifi;
-    if (id.includes('power') || id.includes('charging')) Icon = BatteryCharging;
-    if (id.includes('security')) Icon = ShieldCheck;
-    if (id.includes('vip')) Icon = Store;
+    if (type === 'EXIT' || id.includes('gate') || id.includes('entry')) Icon = LogOut;
+    if (type === 'RESTAURANT' || id.includes('food') || id.includes('merch')) Icon = Utensils;
+    if (type === 'WASHROOM' || id.includes('washroom')) Icon = Droplets;
+    if (type === 'MEDICAL' || id.includes('medical')) Icon = HeartPulse;
+    if (type === 'WIFI' || id.includes('wifi')) Icon = Wifi;
+    if (type === 'POWER' || id.includes('power') || id.includes('charging')) Icon = BatteryCharging;
+    if (type === 'SECURITY' || id.includes('security')) Icon = ShieldCheck;
+    if (type === 'VIP' || id.includes('vip')) Icon = Store;
+    if (type === 'AIRPORT') Icon = Globe;
+    if (type === 'TRAIN_STATION') Icon = Compass;
+
+    // Override colors as requested
+    let finalColor = color;
+    if (type === 'CROWD') finalColor = '#ff0000'; // Red for Crowd
+    if (type === 'RESTAURANT') finalColor = '#0000ff'; // Blue for Restaurants
+    if (type === 'AIRPORT') finalColor = '#00ff00'; // Green for Airport
+    if (type === 'TRAIN_STATION') finalColor = '#ffff00'; // Yellow for Train Stations
 
     return L.divIcon({
         html: renderToStaticMarkup(
             <div className="relative flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ backgroundColor: color }} />
-                <div className="p-2 rounded-lg border border-white/20 shadow-lg backdrop-blur-md" style={{ backgroundColor: `${color}33`, color: color }}>
+                <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ backgroundColor: finalColor }} />
+                <div className="p-2 rounded-lg border border-white/20 shadow-lg backdrop-blur-md" style={{ backgroundColor: `${finalColor}33`, color: finalColor }}>
                     <Icon size={14} strokeWidth={3} />
                 </div>
             </div>
@@ -294,7 +303,7 @@ RECOMMENDATION: ${riskLevel === "CRITICAL" ? "Initiate immediate PAX diversion t
                 {/* Specialized Marker for Identification */}
                 <Marker
                     position={[zone.lat, zone.lng]}
-                    icon={getZoneIcon(zone.id, isEmergency ? '#ff0000' : ai.color)}
+                    icon={getZoneIcon(zone.id, isEmergency ? '#ff0000' : ai.color, zone.type)}
                     eventHandlers={{
                         click: () => handleZoneClick(zone)
                     }}
