@@ -139,13 +139,116 @@ const ProfilePage = () => {
                                     <select
                                         value={profile.state}
                                         onChange={(e) => setProfile({...profile, state: e.target.value})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm text-white focus:border-neonBlue/50 focus:outline-none transition-all appearance-none cursor-pointer"
+                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm text-white focus:border-neonBlue/50 focus:outline-none transition-all appearance-none cursor-pointer overflow-y-auto"
                                     >
-                                        <option value="London">London</option>
-                                        <option value="New York">New York</option>
-                                        <option value="Tokyo">Tokyo</option>
-                                        <option value="Mumbai">Mumbai</option>
-                                        <option value="California">California</option>
+                                        <optgroup label="AMERICAS" className="bg-black text-white/40">
+                                            <option value="Alabama">Alabama</option>
+                                            <option value="Alaska">Alaska</option>
+                                            <option value="Arizona">Arizona</option>
+                                            <option value="Arkansas">Arkansas</option>
+                                            <option value="California">California</option>
+                                            <option value="Colorado">Colorado</option>
+                                            <option value="Connecticut">Connecticut</option>
+                                            <option value="Delaware">Delaware</option>
+                                            <option value="Florida">Florida</option>
+                                            <option value="Georgia">Georgia</option>
+                                            <option value="Hawaii">Hawaii</option>
+                                            <option value="Idaho">Idaho</option>
+                                            <option value="Illinois">Illinois</option>
+                                            <option value="Indiana">Indiana</option>
+                                            <option value="Iowa">Iowa</option>
+                                            <option value="Kansas">Kansas</option>
+                                            <option value="Kentucky">Kentucky</option>
+                                            <option value="Louisiana">Louisiana</option>
+                                            <option value="Maine">Maine</option>
+                                            <option value="Maryland">Maryland</option>
+                                            <option value="Massachusetts">Massachusetts</option>
+                                            <option value="Michigan">Michigan</option>
+                                            <option value="Minnesota">Minnesota</option>
+                                            <option value="Mississippi">Mississippi</option>
+                                            <option value="Missouri">Missouri</option>
+                                            <option value="Montana">Montana</option>
+                                            <option value="Nebraska">Nebraska</option>
+                                            <option value="Nevada">Nevada</option>
+                                            <option value="New Hampshire">New Hampshire</option>
+                                            <option value="New Jersey">New Jersey</option>
+                                            <option value="New Mexico">New Mexico</option>
+                                            <option value="New York">New York</option>
+                                            <option value="North Carolina">North Carolina</option>
+                                            <option value="North Dakota">North Dakota</option>
+                                            <option value="Ohio">Ohio</option>
+                                            <option value="Oklahoma">Oklahoma</option>
+                                            <option value="Oregon">Oregon</option>
+                                            <option value="Pennsylvania">Pennsylvania</option>
+                                            <option value="Rhode Island">Rhode Island</option>
+                                            <option value="South Carolina">South Carolina</option>
+                                            <option value="South Dakota">South Dakota</option>
+                                            <option value="Tennessee">Tennessee</option>
+                                            <option value="Texas">Texas</option>
+                                            <option value="Utah">Utah</option>
+                                            <option value="Vermont">Vermont</option>
+                                            <option value="Virginia">Virginia</option>
+                                            <option value="Washington">Washington</option>
+                                            <option value="West Virginia">West Virginia</option>
+                                            <option value="Wisconsin">Wisconsin</option>
+                                            <option value="Wyoming">Wyoming</option>
+                                            <option value="Ontario">Ontario (Canada)</option>
+                                            <option value="Quebec">Quebec (Canada)</option>
+                                            <option value="Sao Paulo">Sao Paulo (Brazil)</option>
+                                        </optgroup>
+                                        <optgroup label="EUROPE" className="bg-black text-white/40">
+                                            <option value="Greater London">Greater London (UK)</option>
+                                            <option value="Manchester">Manchester (UK)</option>
+                                            <option value="Berlin">Berlin (Germany)</option>
+                                            <option value="Paris">Paris (France)</option>
+                                            <option value="Madrid">Madrid (Spain)</option>
+                                            <option value="Rome">Rome (Italy)</option>
+                                            <option value="Zurich">Zurich (Switzerland)</option>
+                                            <option value="Amsterdam">Amsterdam (Netherlands)</option>
+                                        </optgroup>
+                                        <optgroup label="ASIA PACIFIC" className="bg-black text-white/40">
+                                            <option value="Andhra Pradesh">Andhra Pradesh (India)</option>
+                                            <option value="Arunachal Pradesh">Arunachal Pradesh (India)</option>
+                                            <option value="Assam">Assam (India)</option>
+                                            <option value="Bihar">Bihar (India)</option>
+                                            <option value="Chhattisgarh">Chhattisgarh (India)</option>
+                                            <option value="Goa">Goa (India)</option>
+                                            <option value="Gujarat">Gujarat (India)</option>
+                                            <option value="Haryana">Haryana (India)</option>
+                                            <option value="Himachal Pradesh">Himachal Pradesh (India)</option>
+                                            <option value="Jharkhand">Jharkhand (India)</option>
+                                            <option value="Karnataka">Karnataka (India)</option>
+                                            <option value="Kerala">Kerala (India)</option>
+                                            <option value="Madhya Pradesh">Madhya Pradesh (India)</option>
+                                            <option value="Maharashtra">Maharashtra (India)</option>
+                                            <option value="Manipur">Manipur (India)</option>
+                                            <option value="Meghalaya">Meghalaya (India)</option>
+                                            <option value="Mizoram">Mizoram (India)</option>
+                                            <option value="Nagaland">Nagaland (India)</option>
+                                            <option value="Odisha">Odisha (India)</option>
+                                            <option value="Punjab">Punjab (India)</option>
+                                            <option value="Rajasthan">Rajasthan (India)</option>
+                                            <option value="Sikkim">Sikkim (India)</option>
+                                            <option value="Tamil Nadu">Tamil Nadu (India)</option>
+                                            <option value="Telangana">Telangana (India)</option>
+                                            <option value="Tripura">Tripura (India)</option>
+                                            <option value="Uttar Pradesh">Uttar Pradesh (India)</option>
+                                            <option value="Uttarakhand">Uttarakhand (India)</option>
+                                            <option value="West Bengal">West Bengal (India)</option>
+                                            <option value="Tokyo">Tokyo (Japan)</option>
+                                            <option value="Osaka">Osaka (Japan)</option>
+                                            <option value="Seoul">Seoul (S. Korea)</option>
+                                            <option value="Singapore">Singapore</option>
+                                            <option value="New South Wales">NSW (Australia)</option>
+                                            <option value="Victoria">Victoria (Australia)</option>
+                                        </optgroup>
+                                        <optgroup label="MIDDLE EAST / AFRICA" className="bg-black text-white/40">
+                                            <option value="Dubai">Dubai (UAE)</option>
+                                            <option value="Abu Dhabi">Abu Dhabi (UAE)</option>
+                                            <option value="Riyadh">Riyadh (Saudi Arabia)</option>
+                                            <option value="Cape Town">Cape Town (S. Africa)</option>
+                                            <option value="Cairo">Cairo (Egypt)</option>
+                                        </optgroup>
                                     </select>
                                 </div>
                             </div>

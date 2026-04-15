@@ -212,10 +212,6 @@ const DashboardPage = () => {
                 <Bot size={22} />
                 <span className="text-[7px] font-black uppercase mt-1 tracking-widest lg:opacity-0 group-hover:opacity-100 transition-opacity">About</span>
             </Link>
-            <Link to="/auth" className="text-white/40 hover:text-neonBlue transition-colors cursor-pointer group flex flex-col items-center">
-                <Cpu size={22} />
-                <span className="text-[7px] font-black uppercase mt-1 tracking-widest lg:opacity-0 group-hover:opacity-100 transition-opacity">Auth</span>
-            </Link>
         </div>
 
         <div className="hidden lg:block mt-auto">
